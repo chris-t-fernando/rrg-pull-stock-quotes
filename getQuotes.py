@@ -94,6 +94,7 @@ for row in CursorByName(mycursor):
         thisTicker = yf.Ticker(row['stock_code'] + '.AX').history(start=periodStart, end=periodEnd, interval='1wk', actions=False)
     except Exception as e:
         logging.error('Stock %s: Unable to pull YF object. Error: ', row['stock_code'], Exception)
+        continue
         
     # for each record returned by yf (one record = one week)
     for tickerRow in thisTicker.itertuples():
